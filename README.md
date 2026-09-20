@@ -36,8 +36,8 @@ site files and removes obsolete files from that directory.
 
 ## Features
 
-- Six-stage Arabic literacy journey
+- All 28 Arabic letters divided across six progressive maps
 - Responsive desktop and mobile layouts
-- Interactive current lesson and letter pronunciation
-- Locked-stage and completion feedback
-- Weekly goal, streak, stars, and reward UI
+- Interactive letter cards with Arabic pronunciation
+- Saved learner progress, locked stages, stars, and completion feedback
+- A printable personalised certificate after every map
