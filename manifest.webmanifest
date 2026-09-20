@@ -1,0 +1,12 @@
+{
+  "name": "Hikaya Arabic Reading Adventure",
+  "short_name": "Hikaya",
+  "description": "A playful Arabic reading adventure for young learners.",
+  "start_url": "/hikaya/",
+  "scope": "/hikaya/",
+  "display": "standalone",
+  "background_color": "#f8f8fc",
+  "theme_color": "#7356cf",
+  "lang": "en",
+  "dir": "ltr"
+}

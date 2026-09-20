@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Hikaya — a playful Arabic reading adventure for young learners." />
+    <meta name="theme-color" content="#7356cf" />
+    <link rel="canonical" href="https://diinislaam.com/hikaya/" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <title>Hikaya — Arabic Reading Adventure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Noto+Kufi+Arabic:wght@500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="./" aria-label="Hikaya home">
+          <span class="brand-mark">ح</span>
+          <span>Hikaya</span>
+        </a>
+        <nav>
+          <a class="nav-item active" href="#map" aria-current="page"><span>🗺️</span>My Map</a>
+          <a class="nav-item" href="#stories"><span>📚</span>Story Library</a>
+          <a class="nav-item" href="#practice"><span>✏️</span>Practice</a>
+          <a class="nav-item" href="#rewards"><span>🏆</span>My Rewards</a>
+        </nav>
+        <div class="side-mascot" aria-hidden="true">
+          <div class="moon">☾</div>
+          <p>Every letter<br />opens a door!</p>
+        </div>
+        <button class="help-button"><span>?</span> Grown-ups</button>
+      </aside>
+
+      <main>
+        <header class="topbar">
+          <div class="mobile-brand"><span class="brand-mark">ح</span> Hikaya</div>
+          <div class="streak pill" title="Learning streak"><span>🔥</span><strong>7</strong><small>day streak</small></div>
+          <div class="stars pill" title="Stars earned"><span>⭐</span><strong id="starCount">1,240</strong></div>
+          <button class="profile" aria-label="Open profile"><span>👧🏽</span><i></i></button>
+        </header>
+
+        <section class="hero" id="map">
+          <div>
+            <p class="eyebrow">YOUR LEARNING JOURNEY</p>
+            <h1>Marhaban, <span>Nour!</span> 👋</h1>
+            <p>Follow the path, discover Arabic, and collect stars along the way.</p>
+          </div>
+          <div class="weekly-card">
+            <div class="weekly-icon">🎯</div>
+            <div><small>WEEKLY GOAL</small><strong>4 of 5 lessons</strong><div class="progress"><i></i></div></div>
+            <b>80%</b>
+          </div>
+        </section>
+
+        <section class="map-card" aria-label="Arabic learning map">
+          <div class="map-title">
+            <span>Adventure Map</span>
+            <div><i></i> Current lesson</div>
+          </div>
+
+          <div class="journey-path" aria-hidden="true">
+            <svg viewBox="0 0 1100 510" preserveAspectRatio="none">
+              <path class="path-shadow" d="M65 405 C120 325 150 180 270 224 S350 440 470 374 S525 135 655 175 S725 405 845 340 S910 105 1040 92" />
+              <path class="path-dashes" d="M65 405 C120 325 150 180 270 224 S350 440 470 374 S525 135 655 175 S725 405 845 340 S910 105 1040 92" />
+            </svg>
+          </div>
+
+          <article class="land land-1 completed" data-lesson="Letter Oasis" tabindex="0">
+            <div class="land-number">1</div><div class="island palm-island"><span class="land-art">🌴</span><span class="check">✓</span></div>
+            <h2>Letter Oasis</h2><p>الحروف</p><div class="mini-stars">★★★</div>
+          </article>
+          <article class="land land-2 completed" data-lesson="Sound Garden" tabindex="0">
+            <div class="land-number">2</div><div class="island garden-island"><span class="land-art">🌺</span><span class="check">✓</span></div>
+            <h2>Sound Garden</h2><p>الأصوات</p><div class="mini-stars">★★★</div>
+          </article>
+          <article class="land land-3 current" data-lesson="Word Harbor" tabindex="0">
+            <div class="speech">Start here!</div><div class="land-number">3</div><div class="island harbor-island"><span class="land-art">⛵</span><button class="play" aria-label="Start Word Harbor lesson">▶</button></div>
+            <h2>Word Harbor</h2><p>الكلمات</p><div class="mini-stars"><span>★</span>☆☆</div>
+          </article>
+          <article class="land land-4 locked" data-lesson="Sentence Souk" tabindex="0">
+            <div class="land-number">4</div><div class="island souk-island"><span class="land-art">🏺</span><span class="lock">🔒</span></div>
+            <h2>Sentence Souk</h2><p>الجمل</p><div class="mini-stars">☆☆☆</div>
+          </article>
+          <article class="land land-5 locked" data-lesson="Story Valley" tabindex="0">
+            <div class="land-number">5</div><div class="island valley-island"><span class="land-art">🏕️</span><span class="lock">🔒</span></div>
+            <h2>Story Valley</h2><p>القصص</p><div class="mini-stars">☆☆☆</div>
+          </article>
+          <article class="land land-6 locked" data-lesson="Reader's Castle" tabindex="0">
+            <div class="land-number">6</div><div class="island castle-island"><span class="land-art">🏰</span><span class="lock">🔒</span></div>
+            <h2>Reader's Castle</h2><p>قلعة القارئ</p><div class="mini-stars">☆☆☆</div>
+          </article>
+
+          <div class="cloud c1">☁</div><div class="cloud c2">☁</div><div class="cloud c3">☁</div>
+          <div class="dune d1"></div><div class="dune d2"></div>
+        </section>
+
+        <section class="today-card">
+          <div class="lesson-symbol"><span>ب</span><i>َ</i></div>
+          <div class="today-copy"><small>UP NEXT • WORD HARBOR</small><h2>Build your first words</h2><p>Join letters together and hear them come alive!</p></div>
+          <div class="reward"><span>⭐</span><strong>+30</strong><small>STARS</small></div>
+          <button class="primary-button" id="continueButton">Continue learning <span>→</span></button>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal" id="lessonModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-card">
+        <button class="close" aria-label="Close lesson">×</button>
+        <div class="celebrate">✨ <span>بَاب</span> ✨</div>
+        <p class="modal-kicker">WORD HARBOR • LESSON 1</p>
+        <h2 id="modalTitle">Build the word “door”</h2>
+        <p>Tap each letter, then say the whole word aloud.</p>
+        <div class="letter-row"><button>بَ</button><button>ا</button><button>ب</button></div>
+        <button class="primary-button done-button">I said it! <span>✓</span></button>
+      </div>
+    </div>
+    <div class="toast" role="status" aria-live="polite"></div>
+    <script src="script.js"></script>
+  </body>
+</html>

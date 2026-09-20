@@ -1,0 +1,68 @@
+name: Deploy Hikaya
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: hikaya-production
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Publish to diinislaam.com/hikaya
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://diinislaam.com/hikaya/
+    steps:
+      - name: Check out the site
+        uses: actions/checkout@v4
+
+      - name: Build static deployment directory
+        run: |
+          mkdir -p _site
+          cp index.html styles.css script.js manifest.webmanifest _site/
+
+      - name: Validate required deployment settings
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          for setting in DEPLOY_HOST DEPLOY_USER DEPLOY_SSH_KEY SSH_KNOWN_HOSTS; do
+            if [ -z "${!setting}" ]; then
+              echo "::error::The $setting production secret is not configured."
+              exit 1
+            fi
+          done
+
+      - name: Configure SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
+
+      - name: Upload Hikaya
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+        run: |
+          PORT="${DEPLOY_PORT:-22}"
+          TARGET="${DEPLOY_PATH:-/var/www/diinislaam.com/html/hikaya}"
+          ssh -p "$PORT" "$DEPLOY_USER@$DEPLOY_HOST" "mkdir -p '$TARGET'"
+          rsync -az --delete -e "ssh -p $PORT" _site/ "$DEPLOY_USER@$DEPLOY_HOST:$TARGET/"
+
+      - name: Verify the public site
+        run: curl --fail --retry 5 --retry-delay 5 https://diinislaam.com/hikaya/
